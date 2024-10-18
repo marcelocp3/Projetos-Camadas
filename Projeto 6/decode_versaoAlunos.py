@@ -72,6 +72,8 @@ def main():
     # Identifica os picos
     indices = peakutils.indexes(np.abs(yf), thres=0.3, min_dist=50)
     freqs_picos = xf[indices]
+    print(indices)
+
     
     print(f"Frequências detectadas: {freqs_picos}")
     
