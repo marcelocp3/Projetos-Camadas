@@ -30,12 +30,14 @@ def main():
     
     # Parâmetros de gravação
     fs = 44100  # Taxa de amostragem
-    duration = 2  # Duração em segundos
+    duration = 5  # Duração em segundos
     sd.default.samplerate = fs
     sd.default.channels = 1
     
     print(f"Iniciando gravação em {duration} segundos...")
-    time.sleep(1)
+    for i in range(5):
+        print(f"Gravando em {5-i}...")
+        time.sleep(1)
     print("Gravando...")
     
     # Gravação
