@@ -7,9 +7,9 @@ import sys
 
 # Frequências DTMF
 dtmf_freq = {
-    '1': (697, 1209), '2': (697, 1336), '3': (697, 1477),
+    '1': (679, 1209), '2': (679, 1336), '3': (697, 1477),
     '4': (770, 1209), '5': (770, 1336), '6': (770, 1477),
-    '7': (852, 1209), '8': (852, 1336), '9': (852, 1477),
+    '7': (825, 1209), '8': (825, 1336), '9': (825, 1477),
     '0': (941, 1336)
 }
 
@@ -49,7 +49,7 @@ def main():
     sd.wait()  # Aguarda o fim da reprodução
     
     # Plota o gráfico no domínio do tempo
-    plt.figure()
+    plt.figure(figsize=(10,4))
     plt.plot(t[:1000], signal[:1000])
     plt.title(f"Sinal no Tempo - Tecla {tecla}")
     plt.xlabel("Tempo [s]")

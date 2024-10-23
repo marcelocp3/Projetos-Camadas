@@ -22,9 +22,11 @@ class signalMeu:
         xf = np.linspace(-1.0/(2.0*T), 1.0/(2.0*T), N)
         yf = fft(signal)
         return(xf, fftshift(yf))
-
+    
+    
     def plotFFT(self, signal, fs):
         x,y = self.calcFFT(signal, fs)
         plt.figure()
         plt.plot(x, np.abs(y))
+        plt.xlim(0, 2000)
         plt.title('Fourier')
