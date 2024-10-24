@@ -60,25 +60,23 @@ def detectar_dtmf_gravacao(duracao, fs=8000):
     else:
         print("Nenhuma tecla foi detectada.")
 
-    # Plotar o sinal e o espectro de frequência
-    plt.figure(figsize=(12, 6))
-
-    # Gráfico do sinal no domínio do tempo
-    plt.subplot(2, 1, 1)
-    t = np.linspace(0, duracao, len(sinal))
+    # Criar o primeiro gráfico: Sinal no domínio do tempo
+    plt.figure()
+    t = np.linspace(0, duracao, len(sinal))  # Tempo
     plt.plot(t, sinal)
     plt.title('Sinal no Domínio do Tempo')
     plt.xlabel('Tempo [s]')
     plt.ylabel('Amplitude')
+    plt.grid()
+    plt.show()
 
-    # Gráfico do espectro de frequência
-    plt.subplot(2, 1, 2)
+    # Criar o segundo gráfico: Espectro de frequência
+    plt.figure()
     plt.plot(freqs, spectrum)
     plt.title('Espectro de Frequência')
     plt.xlabel('Frequência [Hz]')
     plt.ylabel('Magnitude')
-
-    plt.tight_layout()
+    plt.grid()
     plt.show()
 
 # Exemplo de uso: gravação de áudio e detecção da tecla DTMF
