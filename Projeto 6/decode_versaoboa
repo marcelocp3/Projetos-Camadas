@@ -6,7 +6,6 @@ import numpy as np
 import sounddevice as sd
 import matplotlib.pyplot as plt
 import time
-from encode_versaoAlunos import main as encode
 
 
 #funcao para transformas intensidade acustica em dB, caso queira usar
@@ -33,14 +32,14 @@ def main():
     channels = 1
     sd.default.channels = channels #numCanais # o numero de canais, tipicamente são 2. Placas com dois canais. Se ocorrer problemas pode tentar com 1. No caso de 2 canais, ao gravar um audio, terá duas listas.
     #Muitas vezes a gravação retorna uma lista de listas. Você poderá ter que tratar o sinal gravado para ter apenas uma lista.
-    duration = 2 # #tempo em segundos que ira aquisitar o sinal acustico captado pelo mic   
+    duration = 3 # #tempo em segundos que ira aquisitar o sinal acustico captado pelo mic   
     #calcule o numero de amostras "numAmostras" que serao feitas (numero de aquisições) durante a gravação. Para esse cálculo você deverá utilizar a taxa de amostragem e o tempo de gravação
     numAmostras = duration * samplerate
     #faca um print na tela dizendo que a captação comecará em n segundos. e então 
     #use um time.sleep para a espera.
    
     #A seguir, faca um print informando que a gravacao foi inicializada
-    print('COMEÇOU A GRAVAÇÃO')
+    print('Gravando...')
     #para gravar, utilize
     audio = sd.rec(int(numAmostras), samplerate, channels=channels)
     
@@ -48,8 +47,7 @@ def main():
     
     # sd.play(audio, samplerate)
     # sd.wait()
-    
-    print("...     FIM")
+    print('--------------------------------------------------')
 
     audio = audio.flatten()
     #analise sua variavel "audio". pode ser um vetor com 1 ou 2 colunas, ou uma lista, ou ainda uma lista de listas (isso dependerá do seu sistema, drivers etc...).
@@ -61,7 +59,7 @@ def main():
     audiodB = [todB(a) for a in audio]
     
     # plot do áudio gravado (dados) vs tempo! Não plote todos os pontos, pois verá apenas uma mancha (freq altas) . 
-    plt.plot(t, audiodB)
+    plt.plot(t, audio)
     plt.show()
        
     ## Calcule e plote o Fourier do sinal audio. como saída tem-se a amplitude e as frequências.
@@ -88,10 +86,10 @@ def main():
     #Provavelmente, se tudo deu certo, 2 picos serao PRÓXIMOS aos valores da tabela. Os demais serão picos de ruídos.
     
     teclas = {
-        1: (697, 1209),
-        2: (697, 1336),
-        3: (697, 1477),
-        'A': (697, 1633),
+        1: (679, 1209),
+        2: (679, 1336),
+        3: (679, 1477),
+        'A': (679, 1633),
         4: (770, 1209),
         5: (770, 1336),
         6: (770, 1477),
@@ -130,7 +128,7 @@ def main():
     
     for key, value in teclas.items():
         if abs(value[0] - baixa) < 5 and abs(value[1] - alta) < 5:
-            print(key)
+            print(f"A tecla detectada foi: {key}")
             break
     
     
